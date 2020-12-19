@@ -1,23 +1,32 @@
-version: 2.0
+version: 2.1
 
 jobs:
   build:
+    working_directory: ~/yutafujii0/quote-with-you
+    docker:
+      - image: 'cimg/node:15.4.0'
+        auth:
+          username: yutafujii
+          password: $DOCKERHUB_PASSWORD
     steps:
-      - run:
-        name: Load nvm (node version manager), install node (version in .nvmrc), and npm install packages
-        command: |
-          [ -s "$HOME/.nvm/nvm.sh" ] && source "$HOME/.nvm/nvm.sh" && nvm use
-      - run:
-        name: Npm install if not already.
-        command: |
-          [ ! -d "node_modules" ] && npm install
+      - checkout
+      - run: node --version
+      - run: yarn -i
       - run: npm run generate
   deploy:
+    working_directory: ~/yutafujii0/quote-with-you
     environment:
       AWS_BUCKET_NAME: 20201219-cloudfront-demo
       AWS_CLOUDFRONT: E3RS8CPF5EDJ3A
+    docker:
+      - image: 'cimg/node:15.4.0'
+        auth:
+          username: yutafujii
+          password: $DOCKERHUB_PASSWORD
     steps:
-      - run: gulp deploy
+      - checkout
+      - run: yarn install
+      - run: yarn run gulp deploy
 
 workflows:
   version: 2
