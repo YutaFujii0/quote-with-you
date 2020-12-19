@@ -1,9 +1,9 @@
-.env
 
 # nuxt
-nuxt/node_modules
-nuxt/deploy.sh
-nuxt/.env
-nuxt/.nuxt
-nuxt/dist
-
+# Don't commit build files
+node_modules
+deploy.sh
+.env
+.nuxt
+dist
+.awspublish*
