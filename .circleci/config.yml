@@ -1,0 +1,32 @@
+version: 2.0
+
+jobs:
+  build:
+    steps:
+      - run:
+        name: Load nvm (node version manager), install node (version in .nvmrc), and npm install packages
+        command: |
+          [ -s "$HOME/.nvm/nvm.sh" ] && source "$HOME/.nvm/nvm.sh" && nvm use
+      - run:
+        name: Npm install if not already.
+        command: |
+          [ ! -d "node_modules" ] && npm install
+      - run: npm run generate
+  deploy:
+    environment:
+      AWS_BUCKET_NAME: 20201219-cloudfront-demo
+      AWS_CLOUDFRONT: E3RS8CPF5EDJ3A
+    steps:
+      - run: gulp deploy
+
+workflows:
+  version: 2
+  build-deploy:
+    jobs:
+      - build
+      - deploy:
+          requires:
+            - build
+          filters:
+            branches:
+              only: master
