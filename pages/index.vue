@@ -2,7 +2,7 @@
   <div class="container">
     <div>
       <Logo />
-      <h1 class="title">quotes-picker</h1>
+      <h1 class="title">quotes-with-you(now on construction)</h1>
       <div class="links">
         <a
           href="https://nuxtjs.org/"
