@@ -26,6 +26,7 @@ jobs:
     steps:
       - checkout
       - run: yarn install
+      - run: npm run generate
       - run: yarn run gulp deploy
 
 workflows:
