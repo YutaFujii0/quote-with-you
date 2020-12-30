@@ -7,3 +7,4 @@ deploy.sh
 .nuxt
 dist
 .awspublish*
+yarn-error.log
