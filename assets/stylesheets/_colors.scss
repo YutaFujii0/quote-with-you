@@ -7,9 +7,5 @@
 $color-mainYellow: $palette-illuminating;
 $color-mainGray: $palette-ultimategray;
 $color-white: $palette-white;
-
-:export {
-  color-mainYellow: $color-mainYellow;
-  color-mainGray: $color-mainGray;
-  color-white: $color-white;
-}
+$color-lightGray: $palette-lightGray;
+$color-gray: $palette-Gray;

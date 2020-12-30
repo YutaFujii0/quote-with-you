@@ -1,17 +1,11 @@
 <template>
-  <button
-    class="VButton"
-    :style="styles"
-    @click="click"
-  >
+  <button class="VButton" :style="styles" @click="click">
     <slot />
   </button>
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-
-export default Vue.extend({
+export default {
   props: {
     onclick: {
       type: Function,
@@ -29,24 +23,19 @@ export default Vue.extend({
       type: String,
       default: '',
     },
-    backgroundColor: {
-      type: String,
-      default: '$color-white',
-    },
   },
   computed: {
-    styles: (vm) => ({
+    styles: (vm: any) => ({
       backgroundColor: vm.backgroundColor,
       margin: vm.margin,
     }),
   },
   methods: {
     click(event: Event) {
-      this.onclick(event).then(() => {
-      })
+      this.onclick(event)
     },
   },
-})
+}
 </script>
 
 <style scoped lang="scss">
@@ -59,5 +48,6 @@ export default Vue.extend({
   color: $color-mainYellow;
   font-size: $font-lg;
   background: $color-white;
+  box-shadow: 0 0 25px #a9a9a9;
 }
 </style>

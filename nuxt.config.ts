@@ -1,6 +1,8 @@
 import { NuxtConfig } from '@nuxt/types'
 import i18n from './config/i18n'
 
+const development = process.env.NODE_ENV !== 'production'
+
 const nuxtConfig: NuxtConfig = {
   // Target (https://go.nuxtjs.dev/config-target)
   target: 'static',
@@ -15,9 +17,6 @@ const nuxtConfig: NuxtConfig = {
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
-
-  // Global CSS (https://go.nuxtjs.dev/config-css)
-  css: [],
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: [],
@@ -55,26 +54,24 @@ const nuxtConfig: NuxtConfig = {
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
   axios: {},
 
+  publicRuntimeConfig: {
+    quoteServiceBaseURL: development
+      ? 'https://cors-anywhere.herokuapp.com/https://quote-service.yutafujii.net/quotes/pick'
+      : 'https://quote-service.yutafujii.net/quotes/pick',
+  },
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {},
 
   fontawesome: {
-    // 全部のせは重いため、使用するフォントのみimportする
+    component: 'fa',
     imports: [
       {
         set: '@fortawesome/free-solid-svg-icons',
-        icons: [
-          'faAngleUp',
-          'faAngleRight',
-          'faExternalLinkAlt',
-          'faTimesCircle',
-          'faExclamationTriangle',
-          'faFilePdf',
-          'faCloudUploadAlt',
-          'faPlus',
-          'faCheck',
-          'faBan',
-        ],
+        icons: [],
+      },
+      {
+        set: '@fortawesome/free-brands-svg-icons',
+        icons: ['faGithubSquare', 'faTwitter'],
       },
     ],
   },
@@ -83,7 +80,8 @@ const nuxtConfig: NuxtConfig = {
     scss: [
       '~assets/stylesheets/_palette.scss',
       '~assets/stylesheets/_colors.scss',
-      '~assets/stylesheets/_fonts.scss'
+      '~assets/stylesheets/_fonts.scss',
+      '~assets/stylesheets/_grid.scss',
     ],
   },
 }
