@@ -1,5 +1,5 @@
 {
-  "name": "quotes-picker",
+  "name": "quotes-with-you",
   "version": "1.0.0",
   "private": true,
   "scripts": {
@@ -13,14 +13,17 @@
   "dependencies": {
     "@nuxt/typescript-runtime": "^2.0.0",
     "@nuxtjs/axios": "^5.12.2",
+    "@nuxtjs/style-resources": "^1.0.0",
     "concurrent-transform": "^1.0.0",
     "core-js": "^3.6.5",
     "gulp": "^4.0.2",
     "gulp-awspublish": "^4.1.2",
     "gulp-cloudfront-invalidate-aws-publish": "^1.0.0",
-    "nuxt": "^2.14.6"
+    "nuxt": "^2.14.6",
+    "nuxt-fontawesome": "^0.4.0"
   },
   "devDependencies": {
+    "@fortawesome/free-solid-svg-icons": "^5.15.1",
     "@nuxt/types": "^2.14.6",
     "@nuxt/typescript-build": "^2.0.3",
     "@nuxtjs/eslint-config": "^3.1.0",
@@ -31,6 +34,9 @@
     "eslint-config-prettier": "^6.12.0",
     "eslint-plugin-nuxt": "^1.0.0",
     "eslint-plugin-prettier": "^3.1.4",
-    "prettier": "^2.1.2"
+    "nuxt-i18n": "^6.16.0",
+    "prettier": "^2.1.2",
+    "sass": "^1.30.0",
+    "sass-loader": "^10.1.0"
   }
 }
