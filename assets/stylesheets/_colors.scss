@@ -1,0 +1,15 @@
+// Use color-palette in _palette.scss to define each color attributes
+// Good
+//   $color-xxx: $palette-yyy
+// Bad
+//   $color-xxx: $color-yyy
+
+$color-mainYellow: $palette-illuminating;
+$color-mainGray: $palette-ultimategray;
+$color-white: $palette-white;
+
+:export {
+  color-mainYellow: $color-mainYellow;
+  color-mainGray: $color-mainGray;
+  color-white: $color-white;
+}
