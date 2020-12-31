@@ -3,6 +3,7 @@ module.exports = {
   env: {
     browser: true,
     node: true,
+    es6: true,
   },
   extends: [
     '@nuxtjs/eslint-config-typescript',
@@ -13,5 +14,8 @@ module.exports = {
   ],
   plugins: ['prettier'],
   // add your custom rules here
-  rules: {},
+  rules: {
+    'no-unused-vars': 'off',
+    '@typescript-eslint/no-unused-vars': 'warn',
+  },
 }

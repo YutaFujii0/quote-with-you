@@ -28,7 +28,19 @@
 </template>
 
 <script lang="ts">
-export default {
+import Vue from 'vue'
+
+type Data = {
+  quote: string
+  whose: string
+}
+
+type Methods = {
+  handleClick: () => void
+  click: () => Promise<any>
+}
+
+export default Vue.extend<Data, Methods, {}, {}>({
   props: {
     isShow: {
       type: Boolean,
@@ -42,22 +54,20 @@ export default {
     }
   },
   methods: {
-    handleClick() {
-      this.$axios
-        .$get(this.$root.context.$config.quoteServiceBaseURL)
-        .then((data: any) => {
-          this.quote = data.quote[0].quote
-          this.whose = data.quote[0].whose
-        })
+    handleClick(): void {
+      this.$axios.$get(this.$config.quoteServiceBaseURL).then((data: any) => {
+        this.quote = data.quote[0].quote
+        this.whose = data.quote[0].whose
+      })
     },
-    click() {
+    click(): Promise<any> {
       return new Promise((resolve) => {
         this.handleClick()
         resolve(null)
       })
     },
   },
-}
+})
 </script>
 
 <style scoped lang="scss">

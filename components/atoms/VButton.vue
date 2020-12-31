@@ -5,7 +5,25 @@
 </template>
 
 <script lang="ts">
-export default {
+import Vue from 'vue'
+
+type Style = {
+  backgroundColor: string
+  margin: string
+}
+
+type Data = {
+  onclick: (e: Event) => any
+  height: string
+  width: string
+  margin: string
+}
+
+type Methods = {
+  click: (e: Event) => void
+}
+
+export default Vue.extend<Data, Methods, {}, {}>({
   props: {
     onclick: {
       type: Function,
@@ -25,17 +43,19 @@ export default {
     },
   },
   computed: {
-    styles: (vm: any) => ({
-      backgroundColor: vm.backgroundColor,
-      margin: vm.margin,
-    }),
+    styles(vm: any): Style {
+      return {
+        backgroundColor: vm.backgroundColor,
+        margin: vm.margin,
+      }
+    },
   },
   methods: {
-    click(event: Event) {
+    click(event: Event): void {
       this.onclick(event)
     },
   },
-}
+})
 </script>
 
 <style scoped lang="scss">

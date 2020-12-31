@@ -81,7 +81,7 @@ a {
   .footer__container {
     display: flex;
     justify-content: flex-end;
-    align-items: start;
+    align-items: flex-start;
     height: 100%;
     align-items: center;
     max-width: $container-max-width;
