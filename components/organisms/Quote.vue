@@ -24,15 +24,11 @@
         <span>{{ $t('button.pick') }}</span>
       </v-button>
     </div>
-    <v-button :onclick="helloWorld" margin="0 auto" width="300px" height="50px">
-      <span>{{ $t('button.pick') }}</span>
-    </v-button>
   </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
-console.log('quote component is been imported')
 
 type Data = {
   quote: string
@@ -42,7 +38,6 @@ type Data = {
 type Methods = {
   handleClick: () => void
   click: () => Promise<any>
-  helloWorld: () => void
 }
 
 export default Vue.extend<Data, Methods, {}, {}>({
@@ -58,10 +53,6 @@ export default Vue.extend<Data, Methods, {}, {}>({
       whose: '',
     }
   },
-  created() {
-    console.log('hello world')
-    console.log(this.$config.quoteServiceBaseURL)
-  },
   methods: {
     handleClick(): void {
       this.$axios.$get(this.$config.quoteServiceBaseURL).then((data: any) => {
@@ -74,10 +65,6 @@ export default Vue.extend<Data, Methods, {}, {}>({
         this.handleClick()
         resolve(null)
       })
-    },
-    helloWorld() {
-      console.log('hello world')
-      console.log(this.$config.quoteServiceBaseURL)
     },
   },
 })
