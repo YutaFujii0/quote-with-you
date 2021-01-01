@@ -89,7 +89,7 @@ export default Vue.extend<Data, Methods, {}, {}>({
   border: 1px solid $color-white;
 
   .quote__text {
-    margin: auto $distance-lg;
+    margin: auto $distance-sm;
     color: $color-gray;
     font-size: $font-sm;
     display: block;

@@ -1,15 +1,15 @@
 <template>
   <div class="block">
-    <quote></quote>
+    <quote-box></quote-box>
   </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
-import Quote from '../components/organisms/Quote.vue'
+import QuoteBox from '../components/organisms/QuoteBox.vue'
 
 export default Vue.extend({
-  components: { Quote },
+  components: { QuoteBox },
 })
 </script>
 
@@ -17,5 +17,6 @@ export default Vue.extend({
 .block {
   max-width: $container-max-width;
   margin: 0 auto;
+  padding: 0 $distance-sm;
 }
 </style>

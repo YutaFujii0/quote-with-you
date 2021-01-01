@@ -63,11 +63,11 @@ export default Vue.extend<Data, Methods, {}, {}>({
   display: block;
   width: 250px;
   height: 50px;
-  border: 2px solid $color-white;
+  border: 1px solid $color-lightGray;
   border-radius: 25px;
-  color: $color-mainYellow;
-  font-size: $font-lg;
+  color: $color-mainGray;
+  font-size: $font-md;
   background: $color-white;
-  box-shadow: 0 0 25px #a9a9a9;
+  box-shadow: 0 4px 10px $palette-Gray;
 }
 </style>
