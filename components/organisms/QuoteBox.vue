@@ -72,13 +72,20 @@ export default Vue.extend<Data, Methods, {}, {}>({
       this.quote = ''
       this.whose = ''
       return new Promise((resolve) => {
-        this.$axios.$get(this.$config.quoteServiceBaseURL).then((data: any) => {
-          this.quote = data.quote[0].quote
-          setTimeout(() => {
-            this.whose = data.quote[0].whose
-          }, 1000)
-          resolve('resolved')
-        })
+        const params = {
+          params: {
+            lang: this.$i18n.locale || this.$i18n.defaultLocale,
+          },
+        }
+        this.$axios
+          .$get(this.$config.quoteServiceBaseURL, params)
+          .then((data: any) => {
+            this.quote = data.quote[0].quote
+            setTimeout(() => {
+              this.whose = data.quote[0].whose
+            }, 1000)
+            resolve('resolved')
+          })
       })
     },
     async click(): Promise<any> {

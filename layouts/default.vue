@@ -1,10 +1,17 @@
 <template>
   <div class="wrapper">
     <header>
-      <div class="header__title">
-        <span>{{ $t('header.title') }}</span>
+      <div class="header">
+        <div class="header__content">
+          <span class="header__title">{{ $t('header.title') }}</span>
+          <div class="header__lang">
+            <nuxt-link :to="switchLocalePath('en')">EN</nuxt-link>
+            <span> | </span>
+            <nuxt-link :to="switchLocalePath('ja')">JA</nuxt-link>
+          </div>
+        </div>
+        <div class="header__bar"></div>
       </div>
-      <div class="header__bar"></div>
     </header>
     <div class="container">
       <Nuxt />
@@ -90,14 +97,28 @@ button {
     position: fixed;
     padding: 0 $distance-sm;
   }
+  .header__content {
+    display: flex;
+    justify-content: space-between;
+    padding: $distance-xs $distance-sm;
+    height: 50px;
+  }
   .header__title {
-    margin: 0 $distance-sm;
-    padding: $distance-xs 0;
+    // margin: 0 $distance-sm;
+    // padding: $distance-xs 0;
+  }
+  .header__lang {
+    a {
+      text-decoration: none;
+      color: $color-white;
+      font-size: $font-sm;
+    }
   }
   .header__bar {
-    height: 3px;
+    height: 2px;
     width: 70vw;
     background: $color-white;
+    box-shadow: 0 0 10px $color-white;
   }
   .footer {
     display: flex;
