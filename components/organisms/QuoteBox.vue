@@ -24,9 +24,28 @@
       />
     </div>
     <div class="block__bottom">
-      <v-button :onclick="click" margin="0 auto" width="250px" height="50px">
+      <v-button
+        v-if="!isDrawn"
+        :onclick="click"
+        margin="0 auto"
+        width="250px"
+        height="50px"
+      >
         <span>{{ $t('button.pick') }}</span>
       </v-button>
+      <template v-if="isDrawn">
+        <div class="block__bottomSns">
+          <v-button-tweet
+            :text="tweetText"
+            :url="serviceLink"
+            :hashtags="tweetHashtags"
+          ></v-button-tweet>
+          <v-button-facebook :url="serviceLink"></v-button-facebook>
+        </div>
+        <span class="block__refreshText" @click="refresh">
+          {{ $t('quoteBox.again') }}
+        </span>
+      </template>
     </div>
   </div>
 </template>
@@ -37,12 +56,13 @@ import Vue from 'vue'
 type Data = {
   quote: string
   whose: string
-  showQuoteContent: boolean
+  isDrawn: boolean
 }
 
 type Methods = {
   getQuote: () => Promise<any>
   click: () => Promise<any>
+  refresh: () => void
 }
 
 export default Vue.extend<Data, Methods, {}, {}>({
@@ -56,15 +76,24 @@ export default Vue.extend<Data, Methods, {}, {}>({
     return {
       quote: '',
       whose: '',
-      showQuoteContent: true,
+      isDrawn: false,
     }
   },
   computed: {
     showQuote() {
-      return this.showQuoteContent && this.quote
+      return this.quote
     },
     showWhose() {
-      return this.showQuoteContent && this.whose
+      return this.whose
+    },
+    tweetText() {
+      return `${this.quote} %7C ${this.$t('quoteBox.tweetTitle')}`
+    },
+    serviceLink() {
+      return `${this.$config.serviceLink}${this.$i18n.locale}`
+    },
+    tweetHashtags() {
+      return [this.$t('quoteBox.tweetHashtagFirst')]
     },
   },
   methods: {
@@ -91,8 +120,12 @@ export default Vue.extend<Data, Methods, {}, {}>({
     async click(): Promise<any> {
       await this.getQuote()
       return new Promise((resolve) => {
+        this.isDrawn = true
         resolve(null)
       })
+    },
+    refresh(): void {
+      this.isDrawn = false
     },
   },
 })
@@ -106,6 +139,17 @@ export default Vue.extend<Data, Methods, {}, {}>({
 }
 .block__bottom {
   margin-top: $distance-lg;
+}
+.block__bottomSns {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.block__refreshText {
+  display: block;
+  margin-top: $distance-sm;
+  font-size: $font-sm;
+  text-align: center;
 }
 .quote {
   margin: 0 auto;

@@ -22,13 +22,6 @@
         <span>17-5104 Ultimate Gray</span>
       </div>
       <div class="footer">
-        <a
-          href="https://twitter.com/__yutafujii__"
-          target="_blank"
-          class="footer__faSnsLink"
-        >
-          <fa :icon="['fab', 'twitter']" class="fa__link" />
-        </a>
         <a href="https://github.com/YutaFujii0/quote-with-you" target="_blank">
           <div class="footer__faSnsLink">
             <fa :icon="['fab', 'github-square']" class="fa__link" />
@@ -74,6 +67,15 @@ button {
   font-family: $font-mainFirst, $font-mainSecond, $font-mainThird, sans-serif;
   &:focus {
     outline: none;
+  }
+}
+.fa__link {
+  color: $color-white;
+  &:hover {
+    color: $color-lightGray;
+  }
+  &--gray {
+    color: $color-gray;
   }
 }
 .wrapper {
@@ -129,12 +131,6 @@ button {
     max-width: $container-max-width;
     margin: 0 auto;
     text-align: right;
-  }
-  .fa__link {
-    color: $color-white;
-    &:hover {
-      color: $color-lightGray;
-    }
   }
   .footer__faSnsLink {
     text-align: center;

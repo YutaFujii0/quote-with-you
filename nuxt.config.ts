@@ -58,6 +58,7 @@ const nuxtConfig: NuxtConfig = {
     quoteServiceBaseURL: development
       ? 'https://cors-anywhere.herokuapp.com/https://quote-service.yutafujii.net/quotes/pick'
       : 'https://quote-service.yutafujii.net/quotes/pick',
+    serviceLink: 'https://20201219-cloudfront-demo.yutafujii.net/',
   },
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {},
@@ -71,7 +72,7 @@ const nuxtConfig: NuxtConfig = {
       },
       {
         set: '@fortawesome/free-brands-svg-icons',
-        icons: ['faGithubSquare', 'faTwitter'],
+        icons: ['faGithubSquare', 'faTwitter', 'faFacebook'],
       },
     ],
   },

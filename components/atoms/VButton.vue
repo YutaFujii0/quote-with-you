@@ -5,7 +5,12 @@
     :style="styleObject"
     @click="click"
   >
-    <slot />
+    <slot v-if="!isLoading" />
+    <template v-if="isLoading">
+      <div class="square-holder">
+        <div class="square"></div>
+      </div>
+    </template>
   </button>
 </template>
 
@@ -27,6 +32,7 @@ type StyleObject = {
 type Data = {
   styleObject: StyleObject
   isDisabled: boolean
+  isLoading: boolean
 }
 
 type Methods = {
@@ -68,6 +74,7 @@ export default Vue.extend<Data, Methods, {}, Props>({
         boxShadow: '',
       },
       isDisabled: false,
+      isLoading: false,
     }
   },
   computed: {
@@ -82,9 +89,11 @@ export default Vue.extend<Data, Methods, {}, Props>({
     click(event: Event): void {
       this.styleObject.boxShadow = 'none'
       this.isDisabled = true
+      this.isLoading = true
       this.onclick(event).then((_: any) => {
         this.styleObject.boxShadow = ''
         this.isDisabled = false
+        this.isLoading = false
       })
     },
   },
@@ -102,5 +111,33 @@ export default Vue.extend<Data, Methods, {}, Props>({
   font-size: $font-md;
   background: $color-white;
   box-shadow: 0 4px 10px $palette-Gray;
+}
+.square {
+  width: 12px;
+  height: 12px;
+  border-radius: 4px;
+  margin: 0 auto;
+  background-color: #4b9cdb;
+  animation: loadingG 1.5s cubic-bezier(0.17, 0.37, 0.43, 0.67) infinite;
+}
+@keyframes loadingG {
+  0% {
+    transform: translate(-20px, 0) rotate(0deg);
+    background-color: red;
+  }
+  25% {
+    background-color: yellow;
+  }
+  50% {
+    transform: translate(20px, 0) rotate(360deg);
+    background-color: green;
+  }
+  75% {
+    background-color: blue;
+  }
+  100% {
+    transform: translate(-20px, 0) rotate(0deg);
+    background-color: red;
+  }
 }
 </style>

@@ -8,5 +8,10 @@
   "index": {
     "title": "Live 2021 with Quotes"
   },
+  "quoteBox": {
+    "tweetTitle": "Quote of 2021",
+    "tweetHashtagFirst": "quote-with-you",
+    "again": "Feel like drawing twice?"
+  },
   "creator": "Yuta Fujii"
 }
