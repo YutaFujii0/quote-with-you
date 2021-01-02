@@ -9,8 +9,12 @@
         width="25"
       />
       <div class="quote__quoteMsg">
-        <span class="quote__text">{{ quote }}</span>
-        <span class="quote__whose">{{ whose }}</span>
+        <transition name="slide-fade-in">
+          <span v-if="showQuote" class="quote__text">{{ quote }}</span>
+        </transition>
+        <transition name="fade-in">
+          <span v-if="showWhose" class="quote__whose">{{ whose }}</span>
+        </transition>
       </div>
       <img
         src="~/assets/quote-mark.png"
@@ -33,10 +37,11 @@ import Vue from 'vue'
 type Data = {
   quote: string
   whose: string
+  showQuoteContent: boolean
 }
 
 type Methods = {
-  handleClick: () => void
+  getQuote: () => Promise<any>
   click: () => Promise<any>
 }
 
@@ -51,18 +56,34 @@ export default Vue.extend<Data, Methods, {}, {}>({
     return {
       quote: '',
       whose: '',
+      showQuoteContent: true,
     }
   },
+  computed: {
+    showQuote() {
+      return this.showQuoteContent && this.quote
+    },
+    showWhose() {
+      return this.showQuoteContent && this.whose
+    },
+  },
   methods: {
-    handleClick(): void {
-      this.$axios.$get(this.$config.quoteServiceBaseURL).then((data: any) => {
-        this.quote = data.quote[0].quote
-        this.whose = data.quote[0].whose
+    getQuote(): Promise<any> {
+      this.quote = ''
+      this.whose = ''
+      return new Promise((resolve) => {
+        this.$axios.$get(this.$config.quoteServiceBaseURL).then((data: any) => {
+          this.quote = data.quote[0].quote
+          setTimeout(() => {
+            this.whose = data.quote[0].whose
+          }, 1000)
+          resolve('resolved')
+        })
       })
     },
-    click(): Promise<any> {
+    async click(): Promise<any> {
+      await this.getQuote()
       return new Promise((resolve) => {
-        this.handleClick()
         resolve(null)
       })
     },
@@ -117,5 +138,11 @@ export default Vue.extend<Data, Methods, {}, {}>({
     right: $distance-xs;
     transform: rotate(180deg);
   }
+}
+.slide-fade-in-enter-active {
+  animation: slide-fade-in 1s;
+}
+.fade-in-enter-active {
+  animation: fade-in 1s;
 }
 </style>

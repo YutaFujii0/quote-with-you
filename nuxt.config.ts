@@ -82,6 +82,7 @@ const nuxtConfig: NuxtConfig = {
       '~assets/stylesheets/_colors.scss',
       '~assets/stylesheets/_fonts.scss',
       '~assets/stylesheets/_grid.scss',
+      '~assets/stylesheets/_animation.scss',
     ],
   },
 }

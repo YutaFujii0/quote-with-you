@@ -1,5 +1,10 @@
 <template>
-  <button class="VButton" :style="styles" @click="click">
+  <button
+    class="VButton"
+    :disabled="isDisabled"
+    :style="styleObject"
+    @click="click"
+  >
     <slot />
   </button>
 </template>
@@ -12,18 +17,30 @@ type Style = {
   margin: string
 }
 
-type Data = {
-  onclick: (e: Event) => any
+type StyleObject = {
   height: string
   width: string
   margin: string
+  boxShadow: string
+}
+
+type Data = {
+  styleObject: StyleObject
+  isDisabled: boolean
 }
 
 type Methods = {
   click: (e: Event) => void
 }
 
-export default Vue.extend<Data, Methods, {}, {}>({
+type Props = {
+  onclick: (e: Event) => any
+  height: string
+  width: string
+  margin: string
+}
+
+export default Vue.extend<Data, Methods, {}, Props>({
   props: {
     onclick: {
       type: Function,
@@ -42,6 +59,17 @@ export default Vue.extend<Data, Methods, {}, {}>({
       default: '',
     },
   },
+  data() {
+    return {
+      styleObject: {
+        height: this.height,
+        width: this.width,
+        margin: this.margin,
+        boxShadow: '',
+      },
+      isDisabled: false,
+    }
+  },
   computed: {
     styles(vm: any): Style {
       return {
@@ -52,7 +80,12 @@ export default Vue.extend<Data, Methods, {}, {}>({
   },
   methods: {
     click(event: Event): void {
-      this.onclick(event)
+      this.styleObject.boxShadow = 'none'
+      this.isDisabled = true
+      this.onclick(event).then((_: any) => {
+        this.styleObject.boxShadow = ''
+        this.isDisabled = false
+      })
     },
   },
 })

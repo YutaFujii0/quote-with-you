@@ -1,9 +1,10 @@
 <template>
   <div class="wrapper">
     <header>
-      <div class="header">
-        {{ $t('header.title') }}
+      <div class="header__title">
+        <span>{{ $t('header.title') }}</span>
       </div>
+      <div class="header__bar"></div>
     </header>
     <div class="container">
       <Nuxt />
@@ -89,9 +90,14 @@ button {
     position: fixed;
     padding: 0 $distance-sm;
   }
-  .header {
+  .header__title {
     margin: 0 $distance-sm;
-    padding-top: $distance-xs;
+    padding: $distance-xs 0;
+  }
+  .header__bar {
+    height: 3px;
+    width: 70vw;
+    background: $color-white;
   }
   .footer {
     display: flex;
