@@ -133,12 +133,12 @@ export default Vue.extend<Data, Methods, {}, {}>({
 
 <style scoped lang="scss">
 .block__title {
-  padding: $distance-md 0 $distance-lg 0;
+  padding: $distance-md 0 $distance-md 0;
   text-align: center;
   font-size: $font-lg;
 }
 .block__bottom {
-  margin-top: $distance-lg;
+  margin-top: $distance-md;
 }
 .block__bottomSns {
   display: flex;
