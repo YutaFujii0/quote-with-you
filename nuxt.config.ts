@@ -39,12 +39,12 @@ const nuxtConfig: NuxtConfig = {
       {
         hid: 'twitter:image',
         name: 'twitter:image',
-        content: 'https://20201219-cloudfront-demo.yutafujii.net/ogp.png',
+        content: 'https://quote2you.yutafujii.net/ogp.png',
       },
       {
         hid: 'og:url',
         property: 'og:url',
-        content: 'https://20201219-cloudfront-demo.yutafujii.net',
+        content: 'https://quote2you.yutafujii.net',
       },
       { hid: 'og:type', property: 'og:type', content: 'website' },
       { hid: 'og:title', property: 'og:title', content: `"Your 2021's Quote"` },
@@ -57,7 +57,7 @@ const nuxtConfig: NuxtConfig = {
       {
         hid: 'og:image',
         property: 'og:image',
-        content: 'https://20201219-cloudfront-demo.yutafujii.net/ogp.png',
+        content: 'https://quote2you.yutafujii.net/ogp.png',
       },
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
@@ -103,7 +103,7 @@ const nuxtConfig: NuxtConfig = {
     quoteServiceBaseURL: development
       ? 'https://cors-anywhere.herokuapp.com/https://quote-service.yutafujii.net/quotes/pick'
       : 'https://quote-service.yutafujii.net/quotes/pick',
-    serviceLink: 'https://20201219-cloudfront-demo.yutafujii.net/',
+    serviceLink: 'https://quote2you.yutafujii.net/',
   },
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {},
