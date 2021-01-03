@@ -28,7 +28,7 @@
     <div class="block__bottom">
       <v-button
         v-if="!isDrawn"
-        :onclick="click"
+        :onclick="drawButtonHandler"
         margin="0 auto"
         width="250px"
         height="50px"
@@ -62,7 +62,7 @@ type Data = {
 
 type Methods = {
   getQuote: () => Promise<any>
-  click: () => Promise<any>
+  drawButtonHandler: () => Promise<any>
   refresh: () => void
 }
 
@@ -122,7 +122,7 @@ export default Vue.extend<Data, Methods, {}, {}>({
           })
       })
     },
-    async click(): Promise<any> {
+    async drawButtonHandler(): Promise<any> {
       await this.getQuote()
       return new Promise((resolve) => {
         this.isDrawn = true
@@ -160,7 +160,7 @@ export default Vue.extend<Data, Methods, {}, {}>({
   margin: 0 auto;
   position: relative;
   height: 180px;
-  min-width: 315px;
+  min-width: 200px;
   background: $color-lightGray;
   box-shadow: 0 0 10px $color-white;
   border: 1px solid $color-white;
@@ -217,7 +217,7 @@ export default Vue.extend<Data, Methods, {}, {}>({
     padding: 0 $distance-xxl;
   }
 }
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 800px) and (min-width: 320px) {
   .quote {
     height: 180px;
   }
@@ -233,6 +233,11 @@ export default Vue.extend<Data, Methods, {}, {}>({
   }
   .quote__quoteMsg {
     top: $distance-lg;
+  }
+}
+@media screen and (max-width: 320px) {
+  .block__title {
+    padding: 0;
   }
 }
 </style>
