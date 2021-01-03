@@ -52,7 +52,6 @@
 
 <script lang="ts">
 import Vue from 'vue'
-
 type Data = {
   quote: string
   whose: string
@@ -161,15 +160,9 @@ export default Vue.extend<Data, Methods, {}, {}>({
   border: 1px solid $color-white;
 
   .quote__text {
-    margin: auto $distance-sm;
-    color: $color-gray;
-    font-size: $font-sm;
     display: block;
   }
   .quote__whose {
-    margin: $distance-xs $distance-sm;
-    color: $color-gray;
-    font-size: $font-xs;
     display: block;
   }
   .quote__markTop {
@@ -179,7 +172,6 @@ export default Vue.extend<Data, Methods, {}, {}>({
   }
   .quote__quoteMsg {
     position: absolute;
-    top: $distance-lg;
     width: 100%;
     text-align: center;
   }
@@ -195,5 +187,46 @@ export default Vue.extend<Data, Methods, {}, {}>({
 }
 .fade-in-enter-active {
   animation: fade-in 1s;
+}
+@media screen and (min-width: 800px) {
+  .quote {
+    height: 400px;
+  }
+  .quote__text {
+    margin: auto $distance-lg;
+    color: $color-gray;
+    font-size: $font-lg;
+    display: block;
+  }
+  .quote__whose {
+    margin: $distance-md $distance-lg;
+    color: $color-gray;
+    font-size: $font-md;
+    display: block;
+  }
+  .quote__quoteMsg {
+    top: $distance-xxl;
+  }
+  .block__bottomSns {
+    padding: 0 $distance-xxl;
+  }
+}
+@media screen and (max-width: 800px) {
+  .quote {
+    height: 180px;
+  }
+  .quote__text {
+    margin: auto $distance-sm;
+    color: $color-gray;
+    font-size: $font-sm;
+  }
+  .quote__whose {
+    margin: $distance-xs $distance-sm;
+    color: $color-gray;
+    font-size: $font-xs;
+  }
+  .quote__quoteMsg {
+    top: $distance-lg;
+  }
 }
 </style>
