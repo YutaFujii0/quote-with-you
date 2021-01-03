@@ -91,6 +91,7 @@ const nuxtConfig: NuxtConfig = {
         vueI18n: i18n,
       },
     ],
+    'nuxt-webfontloader',
   ],
 
   // Modules (https://go.nuxtjs.dev/config-modules)
@@ -121,7 +122,11 @@ const nuxtConfig: NuxtConfig = {
       },
     ],
   },
-
+  webfontloader: {
+    google: {
+      families: ['Caveat', 'Sawarabi Mincho'],
+    },
+  },
   styleResources: {
     scss: [
       '~assets/stylesheets/_palette.scss',

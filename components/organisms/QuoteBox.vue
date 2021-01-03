@@ -1,6 +1,8 @@
 <template>
   <div>
-    <div class="block__title">{{ $t('index.title') }}</div>
+    <div class="block__title" :style="titleFontFamily">
+      {{ $t('index.title') }}
+    </div>
     <div class="quote">
       <img
         src="~/assets/quote-mark.png"
@@ -93,6 +95,10 @@ export default Vue.extend<Data, Methods, {}, {}>({
     },
     tweetHashtags() {
       return [this.$t('quoteBox.tweetHashtagFirst')]
+    },
+    titleFontFamily() {
+      const fontFamily = this.$i18n.locale === 'en' ? 'caveat' : 'Sawarabi Mincho'
+      return { fontFamily }
     },
   },
   methods: {
