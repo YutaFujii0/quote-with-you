@@ -95,10 +95,18 @@ const nuxtConfig: NuxtConfig = {
   ],
 
   // Modules (https://go.nuxtjs.dev/config-modules)
-  modules: ['@nuxtjs/axios', 'nuxt-fontawesome'],
+  modules: ['@nuxtjs/axios', 'nuxt-fontawesome', '@nuxtjs/sentry'],
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
   axios: {},
+
+  sentry: {
+    dsn:
+      'https://c9de63dcebbe4e5f890f4cbc268abcc4@o499314.ingest.sentry.io/5577692',
+    config: {
+      environment: development ? 'development' : 'production',
+    },
+  },
 
   publicRuntimeConfig: {
     quoteServiceBaseURL: development
