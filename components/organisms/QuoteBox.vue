@@ -88,7 +88,7 @@ export default Vue.extend<Data, Methods, {}, {}>({
       return this.whose
     },
     tweetText() {
-      return `${this.quote} %7C ${this.$t('quoteBox.tweetTitle')}`
+      return `${this.quote} (${this.whose}) %7C ${this.$t('quoteBox.tweetTitle')}`
     },
     serviceLink() {
       return `${this.$config.serviceLink}${this.$i18n.locale}`
@@ -138,7 +138,7 @@ export default Vue.extend<Data, Methods, {}, {}>({
 
 <style scoped lang="scss">
 .block__title {
-  padding: $distance-md 0 $distance-md 0;
+  padding: $distance-md 0;
   text-align: center;
   font-size: $font-lg;
 }
@@ -159,7 +159,6 @@ export default Vue.extend<Data, Methods, {}, {}>({
 .quote {
   margin: 0 auto;
   position: relative;
-  height: 180px;
   min-width: 200px;
   background: $color-lightGray;
   box-shadow: 0 0 10px $color-white;
@@ -237,7 +236,8 @@ export default Vue.extend<Data, Methods, {}, {}>({
 }
 @media screen and (max-width: 320px) {
   .block__title {
-    padding: 0;
+    padding: $distance-sm;
+    font-size: $font-md;
   }
 }
 </style>

@@ -8,3 +8,5 @@ deploy.sh
 dist
 .awspublish*
 yarn-error.log
+.DS_Store
+static/.DS_Store

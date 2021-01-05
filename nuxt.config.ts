@@ -92,13 +92,24 @@ const nuxtConfig: NuxtConfig = {
       },
     ],
     'nuxt-webfontloader',
+    '@nuxtjs/gtm',
   ],
 
   // Modules (https://go.nuxtjs.dev/config-modules)
   modules: ['@nuxtjs/axios', 'nuxt-fontawesome', '@nuxtjs/sentry'],
 
+  // Build Configuration (https://go.nuxtjs.dev/config-build)
+  build: {},
+
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
   axios: {},
+
+  publicRuntimeConfig: {
+    quoteServiceBaseURL: development
+      ? 'https://cors-anywhere.herokuapp.com/https://quote-service.yutafujii.net/quotes/pick'
+      : 'https://quote-service.yutafujii.net/quotes/pick',
+    serviceLink: 'https://quote2you.yutafujii.net/',
+  },
 
   sentry: {
     dsn:
@@ -108,14 +119,9 @@ const nuxtConfig: NuxtConfig = {
     },
   },
 
-  publicRuntimeConfig: {
-    quoteServiceBaseURL: development
-      ? 'https://cors-anywhere.herokuapp.com/https://quote-service.yutafujii.net/quotes/pick'
-      : 'https://quote-service.yutafujii.net/quotes/pick',
-    serviceLink: 'https://quote2you.yutafujii.net/',
+  gtm: {
+    id: 'GTM-MSV6LMP',
   },
-  // Build Configuration (https://go.nuxtjs.dev/config-build)
-  build: {},
 
   fontawesome: {
     component: 'fa',
@@ -130,11 +136,13 @@ const nuxtConfig: NuxtConfig = {
       },
     ],
   },
+
   webfontloader: {
     google: {
       families: ['Caveat', 'Sawarabi Mincho'],
     },
   },
+
   styleResources: {
     scss: [
       '~assets/stylesheets/_palette.scss',
