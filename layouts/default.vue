@@ -156,7 +156,7 @@ button {
     }
   }
 }
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 375px) {
   .footer__pantoneColor {
     display: none;
   }
