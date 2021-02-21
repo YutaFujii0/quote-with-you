@@ -17,12 +17,7 @@
 <script lang="ts">
 import Vue from 'vue'
 
-type Style = {
-  backgroundColor: string
-  margin: string
-}
-
-type StyleObject = {
+interface StyleObject {
   height: string
   width: string
   margin: string
@@ -76,14 +71,6 @@ export default Vue.extend<Data, Methods, {}, Props>({
       isDisabled: false,
       isLoading: false,
     }
-  },
-  computed: {
-    styles(vm: any): Style {
-      return {
-        backgroundColor: vm.backgroundColor,
-        margin: vm.margin,
-      }
-    },
   },
   methods: {
     click(event: Event): void {
